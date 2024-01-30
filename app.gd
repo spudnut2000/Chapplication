@@ -19,6 +19,8 @@ var message: String
 
 func _ready() -> void:
 	if ("--server") in OS.get_cmdline_args():
+		if ("--use-upnp") in OS.get_cmdline_args():
+			upnp_check_box.button_pressed = true
 		_on_host_button_pressed()
 
 
@@ -83,7 +85,12 @@ func send_peer_information(id, usrname):
 
 func joined() -> void:
 	$ColorRect/HBoxContainer/ServerClientPanel.hide()
-	username = username_field.text
+	
+	if ("--server") in OS.get_cmdline_args(): 
+		username = "SERVER"
+	else:
+		username = username_field.text
+		
 	username_label.text = str("ID: ", multiplayer.get_unique_id(), " USERNAME: ", username)
 	await get_tree().create_timer(1).timeout
 	add_peer.rpc(multiplayer.get_unique_id(), username)

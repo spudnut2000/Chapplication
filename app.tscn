@@ -62,7 +62,6 @@ text = "HOST"
 
 [node name="UPNPCheckBox" type="CheckBox" parent="ColorRect/HBoxContainer/ServerClientPanel"]
 layout_mode = 2
-button_pressed = true
 text = "Use UPNP?"
 
 [node name="JoinButton" type="Button" parent="ColorRect/HBoxContainer/ServerClientPanel"]
