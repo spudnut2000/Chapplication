@@ -1,0 +1,104 @@
+[gd_scene load_steps=3 format=3 uid="uid://cxobq3veddcbo"]
+
+[ext_resource type="Script" path="res://app.gd" id="1_60mu2"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_24ove"]
+bg_color = Color(0.145083, 0.152895, 0.199802, 1)
+
+[node name="App" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+script = ExtResource("1_60mu2")
+
+[node name="ColorRect" type="ColorRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.254902, 0.290196, 0.45098, 1)
+
+[node name="HBoxContainer" type="HBoxContainer" parent="ColorRect"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="ServerClientPanel" type="VBoxContainer" parent="ColorRect/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_stretch_ratio = 0.2
+
+[node name="UsernameField" type="LineEdit" parent="ColorRect/HBoxContainer/ServerClientPanel"]
+layout_mode = 2
+size_flags_vertical = 0
+placeholder_text = "USERNAME"
+alignment = 1
+
+[node name="AddressField" type="LineEdit" parent="ColorRect/HBoxContainer/ServerClientPanel"]
+layout_mode = 2
+placeholder_text = "IP"
+alignment = 1
+
+[node name="PortField" type="LineEdit" parent="ColorRect/HBoxContainer/ServerClientPanel"]
+layout_mode = 2
+placeholder_text = "PORT"
+alignment = 1
+virtual_keyboard_type = 2
+
+[node name="HostButton" type="Button" parent="ColorRect/HBoxContainer/ServerClientPanel"]
+layout_mode = 2
+size_flags_vertical = 0
+text = "HOST"
+
+[node name="UPNPCheckBox" type="CheckBox" parent="ColorRect/HBoxContainer/ServerClientPanel"]
+layout_mode = 2
+button_pressed = true
+text = "Use UPNP?"
+
+[node name="JoinButton" type="Button" parent="ColorRect/HBoxContainer/ServerClientPanel"]
+layout_mode = 2
+size_flags_vertical = 0
+text = "JOIN"
+
+[node name="ChatPanel" type="VBoxContainer" parent="ColorRect/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="UsernameLabel" type="Label" parent="ColorRect/HBoxContainer/ChatPanel"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0, 1, 0, 1)
+theme_override_styles/normal = SubResource("StyleBoxFlat_24ove")
+text = "ID: USERNAME"
+horizontal_alignment = 1
+
+[node name="ChatBox" type="TextEdit" parent="ColorRect/HBoxContainer/ChatPanel"]
+layout_mode = 2
+size_flags_vertical = 3
+editable = false
+
+[node name="HBOX" type="HBoxContainer" parent="ColorRect/HBoxContainer/ChatPanel"]
+layout_mode = 2
+
+[node name="MessgaeField" type="LineEdit" parent="ColorRect/HBoxContainer/ChatPanel/HBOX"]
+custom_minimum_size = Vector2(40.65, 0)
+layout_mode = 2
+size_flags_horizontal = 3
+placeholder_text = "MESSAGE..."
+
+[node name="SendButton" type="Button" parent="ColorRect/HBoxContainer/ChatPanel/HBOX"]
+layout_mode = 2
+text = "SEND"
+
+[connection signal="pressed" from="ColorRect/HBoxContainer/ServerClientPanel/HostButton" to="." method="_on_host_button_pressed"]
+[connection signal="pressed" from="ColorRect/HBoxContainer/ServerClientPanel/JoinButton" to="." method="_on_join_button_pressed"]
+[connection signal="pressed" from="ColorRect/HBoxContainer/ChatPanel/HBOX/SendButton" to="." method="_on_send_button_pressed"]
