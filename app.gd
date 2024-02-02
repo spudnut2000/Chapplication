@@ -67,7 +67,6 @@ func msg_rpc(_username, data):
 @rpc("any_peer", "call_local", "unreliable")
 func add_peer(id, _username):
 	if PeerManager.connected_peers.has(id): return
-	#PeerManager.connected_peers[id] = _username
 	send_peer_information.rpc_id(1, id, _username)
 	chat_box.text += _username + " has joined the server.\n"
 
